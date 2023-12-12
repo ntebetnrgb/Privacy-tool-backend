@@ -1,4 +1,4 @@
-package com.privacytool.springboot;
+package com.anonymous.privacytool;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
