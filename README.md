@@ -12,3 +12,10 @@ Host port: 8080
 ```shell
 docker run -p 8080:80 privacy-tool
 ```
+
+### AWS CLI Setup
+OS: Mac
+```shell
+brew install awscli
+aws configure
+```
