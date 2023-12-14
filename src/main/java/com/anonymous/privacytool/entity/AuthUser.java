@@ -55,4 +55,14 @@ public class AuthUser {
 
     @Column(name = "updated_by")
     private String updatedBy;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdOn = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedOn = LocalDateTime.now();
+    }
 }
