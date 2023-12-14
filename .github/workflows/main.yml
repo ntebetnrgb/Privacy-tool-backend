@@ -5,13 +5,15 @@ on:
     types: [ closed ]
     branches:
       - main
+  workflow_dispatch:
 
 
 jobs:
   build-and-deploy:
-    if: github.event.pull_request.merged == true
+#    if: github.event.pull_request.merged == true
     name: Build and Deploy
     runs-on: ubuntu-latest
+    environment: PROD
     steps:
       - name: Checkout
         uses: actions/checkout@v4
