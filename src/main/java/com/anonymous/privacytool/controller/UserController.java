@@ -1,6 +1,7 @@
 package com.anonymous.privacytool.controller;
 
 import com.anonymous.privacytool.dto.ForgotPasswordRequest;
+import com.anonymous.privacytool.dto.SuccessResponse;
 import com.anonymous.privacytool.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+    public ResponseEntity<SuccessResponse<Object>> forgotPassword(@RequestBody ForgotPasswordRequest request) {
         userService.processForgotPassword(request.getEmail());
-        return ResponseEntity.ok("Password reset email sent.");
+        return ResponseEntity.ok(new SuccessResponse<Object>());
     }
 }
 
