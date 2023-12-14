@@ -1,12 +1,12 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:267923275032:task-definition/privacy-tool-task-def:14",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:267923275032:task-definition/privacy-tool-task-ec2-def:7",
   "containerDefinitions": [
     {
       "name": "privacy-tool-container",
       "image": "267923275032.dkr.ecr.us-east-1.amazonaws.com/privacy-tool:latest",
-      "cpu": 405,
-      "memory": 768,
-      "memoryReservation": 512,
+      "cpu": 307,
+      "memory": 307,
+      "memoryReservation": 256,
       "portMappings": [
         {
           "name": "privacy-tool-container-80-tcp",
@@ -18,13 +18,15 @@
       ],
       "essential": true,
       "environment": [],
+      "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
+      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/privacy-tool-task-def",
+          "awslogs-group": "/ecs/privacy-tool-task-ec2-def",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         },
@@ -32,11 +34,11 @@
       }
     }
   ],
-  "family": "privacy-tool-task-def",
+  "family": "privacy-tool-task-ec2-def",
   "taskRoleArn": "arn:aws:iam::267923275032:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::267923275032:role/ecsTaskExecutionRole",
-  "networkMode": "awsvpc",
-  "revision": 14,
+  "networkMode": "bridge",
+  "revision": 7,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -65,27 +67,23 @@
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
     },
     {
-      "name": "ecs.capability.task-eni"
-    },
-    {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
     }
   ],
   "placementConstraints": [],
   "compatibilities": [
-    "EC2",
-    "FARGATE"
+    "EC2"
   ],
   "requiresCompatibilities": [
-    "FARGATE"
+    "EC2"
   ],
-  "cpu": "512",
-  "memory": "1024",
+  "cpu": "307",
+  "memory": "307",
   "runtimePlatform": {
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-12-14T15:50:27.148Z",
+  "registeredAt": "2023-12-14T19:35:57.050Z",
   "registeredBy": "arn:aws:iam::267923275032:root",
   "tags": []
 }
