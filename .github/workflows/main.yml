@@ -1,10 +1,10 @@
 name: Build & Deploy
 
 on:
-  pull_request:
-    types: [ closed ]
-    branches:
-      - main
+#  pull_request:
+#    types: [ closed ]
+#    branches:
+#      - main
   workflow_dispatch:
 
 
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
@@ -58,10 +58,10 @@ jobs:
           container-name: privacy-tool-container
           image: ${{ steps.build-image.outputs.image }}
 
-      - name: Deploy to AWS ECS Fargate
+      - name: Deploy to AWS ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: privacy-tool-service
-          cluster: privacy-tool-cluster
+          cluster: ec2-backed
           wait-for-service-stability: true
