@@ -19,9 +19,4 @@ public class PrivacyToolBackendApplication {
 	public String healthCheck() {
 		return "Still breathing!";
 	}
-
-	@GetMapping("/healthyy")
-	public String healthCheckk() {
-		return "Still breathing!";
-	}
 }
