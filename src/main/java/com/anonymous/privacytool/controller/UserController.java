@@ -28,12 +28,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<GenericResponse<Object>> userLogin(@RequestBody User user) throws Exception {
-        userService.verifyUserLogin(user);
-        return ResponseEntity.ok(new SuccessResponse<>());
+    public ResponseEntity<GenericResponse> userLogin(@RequestBody User user) throws Exception {
+         return userService.verifyUserLogin(user);
     }
 
-    @GetMapping("/healthyyy")
+    @GetMapping("/verifyThisApiWithAddingAccessTokenInHeaderField")
     public String healthCheck() {
         return "Still breathing!";
     }

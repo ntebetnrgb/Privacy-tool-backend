@@ -4,6 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,13 +28,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String token = getJWTfromRequest(request);
         if(token != null && jwtGenerator.validateToken(token)) {
             String username = jwtGenerator.getUsernameFromJWT(token);
-            String userType = jwtGenerator.getUserTypeFromJWT(token);
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
-                    null, userDetails.getAuthorities());
+                    null,userDetails.getAuthorities() );
 
             authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        }
+        else {
+            response.setStatus(HttpStatus.SC_FORBIDDEN);
+            response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
+            response.getWriter().write("AccessToken Required");
+            return;
         }
         filterChain.doFilter(request, response);
 

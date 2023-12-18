@@ -5,14 +5,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
 public class JwtGenerator {
-    public String generateToken(Authentication authentication) {
-        String username= authentication.getName();
+    public String generateToken(String username) {
         Date currentDate = new Date();
         Date expiryDate = new Date(currentDate.getTime()+ SecurityConstants.JWT_EXPIRATION);
 

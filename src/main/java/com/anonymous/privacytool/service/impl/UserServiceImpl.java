@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -88,14 +89,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<GenericResponse> verifyUserLogin(User user) throws Exception {
-        Optional<User> findUser=userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+         Optional<User> findUser=userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
 
         if(!findUser.isPresent()){
             return ResponseEntity.ok().body(GenericResponse.builder().message("pls signup or password is incorrect").build());
         }
 
-    //    String token = jwtGenerator.generateToken(authentication);
-        return ResponseEntity.ok().body(GenericResponse.builder().message("token is ").build());
+        String token = jwtGenerator.generateToken(user.getEmail());
+        return ResponseEntity.ok().body(GenericResponse.builder().message("Logged in....!!!!").data(token).build());
     }
 
     private String generateResetToken() {
