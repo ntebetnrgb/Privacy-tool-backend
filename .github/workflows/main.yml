@@ -55,7 +55,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: ./task-definition.json
-          container-name: privacy-tool-container
+          container-name: privacy-tool
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy to AWS ECS
@@ -63,5 +63,5 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: privacy-tool-service
-          cluster: ec2-backed
+          cluster: privacytool
           wait-for-service-stability: true
