@@ -1,15 +1,15 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:267923275032:task-definition/privacy-tool-task-ec2-def:7",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:521277634752:task-definition/privacy-tool:1",
   "containerDefinitions": [
     {
-      "name": "privacy-tool-container",
-      "image": "267923275032.dkr.ecr.us-east-1.amazonaws.com/privacy-tool:latest",
+      "name": "privacy-tool",
+      "image": "521277634752.dkr.ecr.us-east-2.amazonaws.com/privacy-tool:latest",
       "cpu": 307,
       "memory": 307,
-      "memoryReservation": 256,
+      "memoryReservation": 307,
       "portMappings": [
         {
-          "name": "privacy-tool-container-80-tcp",
+          "name": "privacy-tool-80-tcp",
           "containerPort": 80,
           "hostPort": 80,
           "protocol": "tcp",
@@ -26,7 +26,7 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/privacy-tool-task-ec2-def",
+          "awslogs-group": "/ecs/privacy-tool",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         },
@@ -34,11 +34,10 @@
       }
     }
   ],
-  "family": "privacy-tool-task-ec2-def",
-  "taskRoleArn": "arn:aws:iam::267923275032:role/ecsTaskExecutionRole",
-  "executionRoleArn": "arn:aws:iam::267923275032:role/ecsTaskExecutionRole",
+  "family": "privacy-tool",
+  "executionRoleArn": "arn:aws:iam::521277634752:role/ecsTaskExecutionRole",
   "networkMode": "bridge",
-  "revision": 7,
+  "revision": 1,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -56,9 +55,6 @@
     },
     {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
     },
     {
       "name": "ecs.capability.execution-role-ecr-pull"
@@ -83,7 +79,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-12-14T19:35:57.050Z",
-  "registeredBy": "arn:aws:iam::267923275032:root",
+  "registeredAt": "2023-12-23T06:47:40.887Z",
+  "registeredBy": "arn:aws:iam::521277634752:root",
   "tags": []
 }
