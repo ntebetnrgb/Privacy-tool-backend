@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class S3PropertiesLoader implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private static final String S3_BUCKET = "privacy-tool";
+    private static final String S3_BUCKET = "privacytool";
     private static final String S3_KEY = "local.properties";
 
     @Override
