@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:521277634752:task-definition/privacy-tool:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:521277634752:task-definition/privacy-tool:9",
   "containerDefinitions": [
     {
       "name": "privacy-tool",
-      "image": "521277634752.dkr.ecr.us-east-2.amazonaws.com/privacy-tool:latest",
+      "image": "521277634752.dkr.ecr.us-east-1.amazonaws.com/privacy-tool:latest",
       "cpu": 307,
       "memory": 307,
       "memoryReservation": 307,
@@ -18,10 +18,8 @@
       ],
       "essential": true,
       "environment": [],
-      "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
-      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -35,9 +33,10 @@
     }
   ],
   "family": "privacy-tool",
+  "taskRoleArn": "arn:aws:iam::521277634752:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::521277634752:role/ecsTaskExecutionRole",
   "networkMode": "bridge",
-  "revision": 1,
+  "revision": 9,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -57,10 +56,10 @@
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
     },
     {
-      "name": "ecs.capability.execution-role-ecr-pull"
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
     },
     {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
@@ -79,7 +78,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-12-23T06:47:40.887Z",
+  "registeredAt": "2024-01-06T11:23:46.333Z",
   "registeredBy": "arn:aws:iam::521277634752:root",
   "tags": []
 }
