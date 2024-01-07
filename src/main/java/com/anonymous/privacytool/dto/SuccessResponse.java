@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Builder
 public class SuccessResponse<T> extends GenericResponse<T> {
 
     public SuccessResponse() {

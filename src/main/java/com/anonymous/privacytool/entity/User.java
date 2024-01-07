@@ -17,7 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-public class AuthUser {
+public class User {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(

@@ -1,7 +1,9 @@
 package com.anonymous.privacytool.controller;
 
 import com.anonymous.privacytool.dto.ForgotPasswordRequest;
+import com.anonymous.privacytool.dto.GenericResponse;
 import com.anonymous.privacytool.dto.SuccessResponse;
+import com.anonymous.privacytool.entity.User;
 import com.anonymous.privacytool.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,25 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<SuccessResponse<Object>> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+    public ResponseEntity<GenericResponse<Object>> forgotPassword(@RequestBody ForgotPasswordRequest request) {
         userService.processForgotPassword(request.getEmail());
-        return ResponseEntity.ok(new SuccessResponse<Object>());
+        return ResponseEntity.ok(new SuccessResponse<>());
     }
+
+    @PostMapping("/signup")
+    public ResponseEntity<GenericResponse> userSignUp(@RequestBody User user) throws Exception {
+        return userService.signUpUser(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<GenericResponse> userLogin(@RequestBody User user) throws Exception {
+         return userService.verifyUserLogin(user);
+    }
+
+    @GetMapping("/verifyThisApiWithAddingAccessTokenInHeaderField")
+    public String healthCheck() {
+        return "Still breathing!";
+    }
+
 }
 
