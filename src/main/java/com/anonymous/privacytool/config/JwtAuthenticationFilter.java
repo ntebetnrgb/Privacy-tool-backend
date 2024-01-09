@@ -47,7 +47,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request){
-        return request.getRequestURI().contains("/signup")  || request.getRequestURI().endsWith("/login") ||request.getRequestURI().endsWith("/healthy");
+        return request.getRequestURI().contains("/signup")
+                || request.getRequestURI().endsWith("/login")
+                || request.getRequestURI().endsWith("/healthy")
+                || request.getRequestURI().endsWith("/user/forgot-password");
     }
 
     private String getJWTfromRequest(HttpServletRequest request) {
