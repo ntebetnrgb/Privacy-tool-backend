@@ -6,6 +6,7 @@ import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.Content;
+import com.anonymous.privacytool.config.SESConfig;
 import com.anonymous.privacytool.exception.EmailSendingException;
 import com.anonymous.privacytool.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
 
     @Autowired
-    private AmazonSimpleEmailService sesClient;
+    SESConfig sesConfig;
 
     @Value("${email.sender}")
     private String senderEmail;
@@ -36,6 +37,6 @@ public class EmailServiceImpl implements EmailService {
                         .withSubject(new Content().withCharset(charset).withData(subject)))
                 .withSource(senderEmail);
 
-        this.sesClient.sendEmail(request);
+        sesConfig.sesClient().sendEmail(request);
     }
 }
